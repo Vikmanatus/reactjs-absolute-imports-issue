@@ -1,46 +1,35 @@
 # Getting Started with Create React App
 
+A reproducible demo to report absolute imports issue in react 18
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+There seems to be an issue with the way absolute imports are handled in the bootstraped project of `create-react-app` `v.5.0.1`
 
-In the project directory, you can run:
+I have setted up absolute imports, according to the [CRA](https://create-react-app.dev/docs/importing-a-component/#absolute-imports) documentation
 
-### `npm start`
+Some of the imports works, some of them don't 😢 and I can't figure out why
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+For example in `./src/App.ts`, the import of the `makeId` function imported from the `utils` folder makes the application crash, but the import of `FakeObjectType` from the `types` folder is compiled successfully
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## List of topic's refering to the same issue
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- https://stackoverflow.com/questions/68416916/create-react-app-absolute-imports-dont-work-with-yarn-v2-workspaces-typescrip
+- https://github.com/facebook/create-react-app/issues/11976
+- https://stackoverflow.com/questions/72132090/absolute-imports-issue-in-react-with-typescript
+- https://stackoverflow.com/questions/72017719/absolute-imports-arent-working-in-reactjs
+- https://stackoverflow.com/questions/73370209/absolute-path-not-working-for-create-react-app-with-typescript
 
-### `npm run build`
+I have tried every solution suggested in another repo, but it didn't fix the issue
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Steps to reproduce the issue
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Please open a terminal and paste the following command
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+yarn install
+yarn start
+```
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+You will see the following error : `Module not found: Error: Can't resolve '@/utils' in ...`
