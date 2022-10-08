@@ -32,4 +32,6 @@ yarn install
 yarn start
 ```
 
-You will see the following error : `Module not found: Error: Can't resolve '@/utils' in ...`
+You will see the following error :
+
+`Module not found: Error: Can't resolve '@/utils' in '/Users/someUser/Desktop/SomeFolder/reactjs-absolute-imports-issue/src'`
